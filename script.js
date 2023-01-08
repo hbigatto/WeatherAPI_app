@@ -19,7 +19,6 @@ let weather = {
   },
 
   displayWeather: function (data) {
-    console.log(data);
     const { name } = data;
     const { icon, description } = data.weather[0];
     const { temp, humidity, feels_like } = data.main;
@@ -46,16 +45,70 @@ let weather = {
 
 };
 
+let zipcode = {
+  apiKey: "1f050409a5416d907f466e2dc4ef7607",
+
+  findCoordByZipcode: function (zip, countrycode) {
+    fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${zip},${countrycode}&appid=${this.apiKey}`).then((response) => {
+      if(!response.ok){
+        alert("No coordenate found or the zipcode might be wrong!");
+         throw new Error("No coordenate found or the zipcode might be wrong!");
+      }
+       return response.json();
+    }).then((data) => this.diplayCoordinates(data));
+
+  },//end findCoordByZipcode
+
+  diplayCoordinates: function(data){
+    const { country } = data;
+    const { lat, lon } = data;
+  
+    document.querySelector(".country").innerText = "Country: " + country;
+    document.querySelector(".latitude").innerText = "Latitude: " + lat;
+    document.querySelector(".longitude").innerText = "Longitude: " + lon;
+  },// end displayCoordinates
+
+  searchzip: function () {
+  
+       let input = document.querySelector(".search-bar-zip").value;
+
+       if(input == 0 || input == " " || input == undefined){
+        alert("Please enter a zipcode and a country code!");
+       }
+       else{
+           let arr = input.split(",");
+           this.findCoordByZipcode(arr[0].toUpperCase(), arr[1].toUpperCase());
+       }
+  },// end searchzip function
+
+};
+
+//Weather search
 document.querySelector(".search button").addEventListener("click", function () {
   weather.search();
 });
 
-document
-  .querySelector(".search-bar")
-  .addEventListener("keyup", function (event) {
+document.querySelector(".search-bar").addEventListener("keyup", function (event) {
     if (event.key == "Enter") {
       weather.search();
     }
   });
 
-weather.fetchWeather("Denver");
+
+  //Zipcode search
+  document
+    .querySelector(".searchzip button").addEventListener("click", function () {
+      zipcode.searchzip();
+    });
+
+    document
+      .querySelector(".search-bar-zip")
+      .addEventListener("keyup", function (event) {
+        if (event.key == "Enter") {
+          zipcode.searchzip();
+        }
+      });
+
+
+weather.fetchWeather("London");
+

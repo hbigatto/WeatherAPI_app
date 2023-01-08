@@ -26,6 +26,16 @@ body {
   justify-content: center;
 }
 
+.searchzip{
+  background: #000000d0;
+  color: white;
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+}
+
 button {
   margin: 0.5em;
   border-radius: 50%;
@@ -81,6 +91,20 @@ h1.temp {
   margin: 0;
 }
 .long{
+  color: brown;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.latitude{
+  color: brown;
+  margin: 0;
+}
+.country{
+  color: brown;
+  margin: 0;
+}
+.longitude{
   color: brown;
   margin: 0;
   margin-bottom: 10px;
