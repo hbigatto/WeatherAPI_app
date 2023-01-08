@@ -2,7 +2,7 @@
 Application designed to find weather conditions by location
 
 application used as reference for learning purposes
-modification will be made in the near future
+modifications will be made in the future
 
 Reference from: https://github.com/DenverCoder1/weather-app-tutorial
 
