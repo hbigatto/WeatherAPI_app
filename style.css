@@ -76,6 +76,16 @@ h1.temp {
   position: relative;
 }
 
+.lat{
+  color: brown;
+  margin: 0;
+}
+.long{
+  color: brown;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 .weather.loading:after {
   visibility: visible;
   content: "Loading...";
